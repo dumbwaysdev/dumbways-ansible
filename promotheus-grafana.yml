@@ -42,7 +42,17 @@
         src: prometheus.service
         dest: /etc/systemd/system/prometheus.service
 
+    - name: "Reload service for grafana"
+      shell: "sudo systemctl daemon-reload; sudo systemctl enable prometheus; sudo systemctl start prometheus"
+      args:
+        executable: /bin/bash
+
     - name: "Install grafana"
       shell: 'sudo wget -q -O - https://packages.grafana.com/gpg.key | apt-key add -; sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"; sudo apt install grafana -y'
       args:
           executable: /bin/bash
+
+    - name: "Reload service for grafana"
+      shell: "sudo systemctl daemon-reload; sudo systemctl enable grafana-server; sudo systemctl start grafana-server"
+      args:
+        executable: /bin/bash
