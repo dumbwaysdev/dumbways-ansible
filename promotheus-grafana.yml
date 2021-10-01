@@ -42,7 +42,7 @@
         src: prometheus.service
         dest: /etc/systemd/system/prometheus.service
 
-    - name: "Reload service for grafana"
+    - name: "Reload service for prometheus"
       shell: "sudo systemctl daemon-reload; sudo systemctl enable prometheus; sudo systemctl start prometheus"
       args:
         executable: /bin/bash
